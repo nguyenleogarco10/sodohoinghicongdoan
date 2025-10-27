@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sơ Đồ Thứ Tự Bầu Cử (Horizontal Top Section)</title>
+    <!-- Tải Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Sử dụng font Inter --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* --- CSS CHO HIỆU ỨNG --- */
+
+        /* Animation cho các mũi tên ngang (chỉ sang phải) */
+        @keyframes flow-right-arrow {
+            0%, 100% {
+                transform: translateX(0);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateX(4px);
+                opacity: 1;
+            }
+        }
+        
+        .animate-flow-right {
+            animation: flow-right-arrow 1.5s infinite ease-in-out;
+        }
+
+        /* [THAY ĐỔI] Tăng chiều rộng hộp để vừa cỡ chữ mới */
+        .main-box-width {
+            width: 16rem; /* ~w-64, tăng từ 12.5rem */
+            text-align: center; /* Căn giữa văn bản trong hộp */
+        }
+
+        /* Animation "highlight" chạy vòng cho các hộp */
+        @keyframes highlight-flow-main {
+            /* Dãy 1 */
+            0%, 16.66% { background-color: #2563EB; border-color: #93C5FD; transform: scale(1.05); box-shadow: 0 0 15px rgba(96, 165, 250, 0.6); }
+            16.67%, 33.32% { background-color: #3B82F6; border-color: transparent; transform: scale(1); box-shadow: none; } /* Normal blue */
+            
+            /* Dãy 2 */
+            33.33%, 49.99% { background-color: #2563EB; border-color: #93C5FD; transform: scale(1.05); box-shadow: 0 0 15px rgba(96, 165, 250, 0.6); }
+            50%, 66.66% { background-color: #3B82F6; border-color: transparent; transform: scale(1); box-shadow: none; } /* Normal blue */
+
+            /* Dãy 3 */
+            66.67%, 83.33% { background-color: #2563EB; border-color: #93C5FD; transform: scale(1.05); box-shadow: 0 0 15px rgba(96, 165, 250, 0.6); }
+            83.34%, 100% { background-color: #3B82F6; border-color: transparent; transform: scale(1); box-shadow: none; } /* Normal blue */
+        }
+
+        .main-flow-box {
+            animation: highlight-flow-main 6s infinite linear; /* 3 bước, mỗi bước 2s */
+            border: 2px solid transparent;
+            transition: transform 0.3s, background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Animation "highlight" chạy vòng cho các dãy con */
+        @keyframes highlight-sub-flow {
+            /* Dãy 1 */
+            0%, 20% { background-color: #059669; border-color: #A7F3D0; transform: scale(1.05); box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); } /* bg-emerald-600 */
+            20.01%, 25% { background-color: #4B5563; border-color: transparent; transform: scale(1); box-shadow: none; } /* bg-gray-600 */
+            
+            /* Dãy 2 */
+            25.01%, 45% { background-color: #059669; border-color: #A7F3D0; transform: scale(1.05); box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); }
+            45.01%, 50% { background-color: #4B5563; border-color: transparent; transform: scale(1); box-shadow: none; }
+
+            /* Dãy 3 */
+            50.01%, 70% { background-color: #059669; border-color: #A7F3D0; transform: scale(1.05); box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); }
+            70.01%, 75% { background-color: #4B5563; border-color: transparent; transform: scale(1); box-shadow: none; }
+            
+            /* Dãy 4 */
+            75.01%, 95% { background-color: #059669; border-color: #A7F3D0; transform: scale(1.05); box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); }
+            95.01%, 100% { background-color: #4B5563; border-color: transparent; transform: scale(1); box-shadow: none; }
+        }
+
+        .sub-flow-box {
+            animation: highlight-sub-flow 8s infinite linear; /* 4 bước, mỗi bước 2s */
+            border: 2px solid transparent;
+            transition: transform 0.3s, background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* --- HẾT CSS CHO HIỆU ỨNG --- */
+
+        /* Animation cho mũi tên chỉ xuống (nếu còn dùng) */
+        @keyframes pulse-down-arrow {
+            0%, 100% {
+                opacity: 0.6;
+                transform: translateY(-2px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(2px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-6">
+
+    <!-- [THAY ĐỔI] Xóa max-w-6xl để tràn màn hình -->
+    <div class="bg-gray-800 p-8 md:p-12 rounded-xl shadow-2xl w-full overflow-hidden">
+        <!-- [THAY ĐỔI] Tăng cỡ chữ Tiêu đề lên 5xl -->
+        <h1 class="text-5xl font-bold text-center mb-10 text-blue-300">
+            Sơ Đồ Thứ Tự Bầu Cử
+        </h1>
+
+        <!-- Vùng chứa sơ đồ chính (ngang) --><div class="flex flex-col items-center">
+            
+            <!-- Các bước chính ngang --><div class="flex flex-wrap justify-center items-center gap-4 mb-8">
+                <!-- Bước 1: Đoàn chủ tịch -->
+                <!-- [THAY ĐỔI] Tăng cỡ chữ lên 2xl, tăng py-4 -->
+                <div class="bg-blue-600 text-white py-4 rounded-lg shadow-lg text-2xl font-semibold transform transition-transform hover:scale-105 main-flow-box main-box-width" style="animation-delay: 0s;">
+                    1. Đoàn Chủ Tịch
+                </div>
+
+                <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-12 h-12 -->
+                <svg class="w-12 h-12 text-blue-400 animate-flow-right hidden sm:block" style="animation-delay: 0.5s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                
+                <!-- Bước 2: Cơ quan TGĐ -->
+                <!-- [THAY ĐỔI] Tăng cỡ chữ lên 2xl, tăng py-4 -->
+                <div class="bg-blue-600 text-white py-4 rounded-lg shadow-lg text-2xl font-semibold transform transition-transform hover:scale-105 main-flow-box main-box-width" style="animation-delay: 2s;">
+                    2. Cơ quan TGĐ
+                </div>
+
+                <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-12 h-12 -->
+                <svg class="w-12 h-12 text-blue-400 animate-flow-right hidden sm:block" style="animation-delay: 2.5s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                
+                <!-- Bước 3: Đoàn thư ký -->
+                <!-- [THAY ĐỔI] Tăng cỡ chữ lên 2xl, tăng py-4 -->
+                <div class="bg-blue-600 text-white py-4 rounded-lg shadow-lg text-2xl font-semibold transform transition-transform hover:scale-105 main-flow-box main-box-width" style="animation-delay: 4s;">
+                    3. Đoàn Thư Ký
+                </div>
+            </div>
+            
+            <!-- [THAY ĐỔI] Bọc Bước 4 và Mũi tên mới trong flex container -->
+            <div class="flex justify-center items-center gap-4 mb-8">
+                
+                <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-12 h-12 -->
+                <svg class="w-12 h-12 text-green-400 animate-flow-right" style="animation-delay: 0s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+
+                <!-- Bước 4: Đoàn đại biểu (có quy trình con) -->
+                <!-- [THAY ĐỔI] Tăng cỡ chữ lên 2xl, tăng py-4 -->
+                <div class="bg-green-700 text-white py-4 rounded-lg shadow-lg text-2xl font-semibold transform transition-transform hover:scale-105 main-box-width">
+                    4. Đoàn Đại Biểu
+                </div>
+
+                <!-- [THAY ĐỔI] Tăng kích thước đệm lên w-12 h-12 -->
+                <div class="w-12 h-12"></div>
+            </div>
+
+
+            <!-- Hộp quy trình con cho Đoàn Đại Biểu --><div class="w-full border border-dashed border-gray-500 rounded-lg p-6 bg-gray-700/50">
+                <!-- [THAY ĐỔI] Tăng cỡ chữ lên 3xl -->
+                <h2 class="text-3xl font-semibold text-green-300 mb-6 text-center">
+                    Quy trình chi tiết của Đoàn Đại Biểu
+                </h2>
+                
+                <!-- Luồng các dãy (ngang) --><div class="flex flex-wrap justify-center items-center gap-4">
+                    <!-- [THAY ĐỔI] Tăng cỡ chữ lên lg, tăng padding py-3 px-5 -->
+                    <div class="bg-gray-600 py-3 px-5 rounded-md text-lg font-medium shadow-md sub-flow-box" style="animation-delay: 0s;">
+                        Dãy 1
+                    </div>
+                    
+                    <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-8 h-8 -->
+                    <svg class="w-8 h-8 text-gray-400 hidden sm:block animate-flow-right" style="animation-delay: 1s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+
+                    <!-- [THAY ĐỔI] Tăng cỡ chữ lên lg, tăng padding py-3 px-5 -->
+                    <div class="bg-gray-600 py-3 px-5 rounded-md text-lg font-medium shadow-md sub-flow-box" style="animation-delay: 2s;">
+                        Dãy 2
+                    </div>
+                    
+                    <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-8 h-8 -->
+                    <svg class="w-8 h-8 text-gray-400 hidden sm:block animate-flow-right" style="animation-delay: 3s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    
+                    <!-- [THAY ĐỔI] Tăng cỡ chữ lên lg, tăng padding py-3 px-5 -->
+                    <div class="bg-gray-600 py-3 px-5 rounded-md text-lg font-medium shadow-md sub-flow-box" style="animation-delay: 4s;">
+                        Dãy 3
+                    </div>
+                    
+                    <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-8 h-8 -->
+                    <svg class="w-8 h-8 text-gray-400 hidden sm:block animate-flow-right" style="animation-delay: 5s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    
+                    <!-- [THAY ĐỔI] Tăng cỡ chữ lên lg, tăng padding py-3 px-5 -->
+                    <div class="bg-gray-600 py-3 px-5 rounded-md text-lg font-medium shadow-md sub-flow-box" style="animation-delay: 6s;">
+                        Dãy 4...
+                    </div>
+                </div>
+
+                <!-- Ghi chú chi tiết --><div class="mt-8 text-base text-gray-300 bg-gray-800 p-4 rounded-lg shadow-inner">
+                    <!-- [THAY ĐỔI] Tăng cỡ chữ Ghi chú lên xl, tăng cỡ chữ list lên base (thay cho text-sm) -->
+                    <h3 class="font-semibold text-xl text-gray-100 mb-2">Ghi chú:</h3>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Thực hiện bầu cử gọn hết từng dãy 1, theo thứ tự từ trái qua phải.</li>
+                        <li>Dãy nào bầu cử xong sẽ quay về đúng hàng của mình.</li>
+                        <li>Các dãy tiếp theo (2, 3, 4...) nối đuôi nhau thực hiện.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- CSS cho animation mũi tên xuống vẫn được giữ lại, phòng khi cần dùng -->
+    <style>
+        /* New animation for pulse down arrow */
+        @keyframes pulse-down-arrow {
+            0%, 100% {
+                opacity: 0.6;
+                transform: translateY(-2px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(2px);
+            }
+        }
+    </style>
+</body>
+</html>
+
