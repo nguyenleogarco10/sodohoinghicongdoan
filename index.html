@@ -31,7 +31,7 @@
             animation: flow-right-arrow 1.5s infinite ease-in-out;
         }
 
-        /* [THAY ĐỔI] Tăng chiều rộng hộp để vừa cỡ chữ mới */
+        /* Tăng chiều rộng hộp để vừa cỡ chữ mới */
         .main-box-width {
             width: 16rem; /* ~w-64, tăng từ 12.5rem */
             text-align: center; /* Căn giữa văn bản trong hộp */
@@ -58,29 +58,132 @@
             transition: transform 0.3s, background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
-        /* Animation "highlight" chạy vòng cho các dãy con */
-        @keyframes highlight-sub-flow {
-            /* Dãy 1 */
-            0%, 20% { background-color: #059669; border-color: #A7F3D0; transform: scale(1.05); box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); } /* bg-emerald-600 */
-            20.01%, 25% { background-color: #4B5563; border-color: transparent; transform: scale(1); box-shadow: none; } /* bg-gray-600 */
-            
-            /* Dãy 2 */
-            25.01%, 45% { background-color: #059669; border-color: #A7F3D0; transform: scale(1.05); box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); }
-            45.01%, 50% { background-color: #4B5563; border-color: transparent; transform: scale(1); box-shadow: none; }
+        /* [SỬA LỖI] Định nghĩa 4 keyframes cho hiệu ứng sáng dồn */
+        
+        /* Trạng thái "Sáng" (Được copy trực tiếp vào keyframes) */
+        /*
+        .lit-state {
+            background-color: #059669; 
+            border-color: #A7F3D0; 
+            transform: scale(1.05); 
+            box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); 
+        }
+        */
 
-            /* Dãy 3 */
-            50.01%, 70% { background-color: #059669; border-color: #A7F3D0; transform: scale(1.05); box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); }
-            70.01%, 75% { background-color: #4B5563; border-color: transparent; transform: scale(1); box-shadow: none; }
-            
-            /* Dãy 4 */
-            75.01%, 95% { background-color: #059669; border-color: #A7F3D0; transform: scale(1.05); box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); }
-            95.01%, 100% { background-color: #4B5563; border-color: transparent; transform: scale(1); box-shadow: none; }
+        /* Trạng thái "Tắt" (Được copy trực tiếp vào keyframes) */
+        /*
+        .off-state {
+            background-color: #4B5563; 
+            border-color: transparent; 
+            transform: scale(1); 
+            box-shadow: none; 
+        }
+        */
+
+        /* [SỬA LỖI] Keyframe cho ô 1 (Sáng từ 0% -> 99.9%) - Thay @apply bằng CSS */
+        @keyframes highlight-step-1 {
+            0%, 99.9% { 
+                background-color: #059669; 
+                border-color: #A7F3D0; 
+                transform: scale(1.05); 
+                box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); 
+            }
+            100% { 
+                background-color: #4B5563; 
+                border-color: transparent; 
+                transform: scale(1); 
+                box-shadow: none; 
+            }
         }
 
+        /* [SỬA LỖI] Keyframe cho ô 2 (Sáng từ 25% -> 99.9%) - Thay @apply bằng CSS */
+        @keyframes highlight-step-2 {
+            0%, 24.9% { 
+                background-color: #4B5563; 
+                border-color: transparent; 
+                transform: scale(1); 
+                box-shadow: none; 
+            }
+            25%, 99.9% { 
+                background-color: #059669; 
+                border-color: #A7F3D0; 
+                transform: scale(1.05); 
+                box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); 
+            }
+            100% { 
+                background-color: #4B5563; 
+                border-color: transparent; 
+                transform: scale(1); 
+                box-shadow: none; 
+            }
+        }
+        
+        /* [SỬA LỖI] Keyframe cho ô 3 (Sáng từ 50% -> 99.9%) - Thay @apply bằng CSS */
+        @keyframes highlight-step-3 {
+            0%, 49.9% { 
+                background-color: #4B5563; 
+                border-color: transparent; 
+                transform: scale(1); 
+                box-shadow: none; 
+            }
+            50%, 99.9% { 
+                background-color: #059669; 
+                border-color: #A7F3D0; 
+                transform: scale(1.05); 
+                box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); 
+            }
+            100% { 
+                background-color: #4B5563; 
+                border-color: transparent; 
+                transform: scale(1); 
+                box-shadow: none; 
+            }
+        }
+
+        /* [SỬA LỖI] Keyframe cho ô 4 (Sáng từ 75% -> 99.9%) - Thay @apply bằng CSS */
+        @keyframes highlight-step-4 {
+            0%, 74.9% { 
+                background-color: #4B5563; 
+                border-color: transparent; 
+                transform: scale(1); 
+                box-shadow: none; 
+            }
+            75%, 99.9% { 
+                background-color: #059669; 
+                border-color: #A7F3D0; 
+                transform: scale(1.05); 
+                box-shadow: 0 0 15px rgba(52, 211, 153, 0.6); 
+            }
+            100% { 
+                background-color: #4B5563; 
+                border-color: transparent; 
+                transform: scale(1); 
+                box-shadow: none; 
+            }
+        }
+
+        /* [SỬA LỖI] Lớp cơ sở cho các ô, đặt trạng thái "tắt" ban đầu - Thay @apply bằng CSS */
         .sub-flow-box {
-            animation: highlight-sub-flow 8s infinite linear; /* 4 bước, mỗi bước 2s */
+            background-color: #4B5563; /* bg-gray-600 */
+            border-color: transparent; 
+            transform: scale(1); 
+            box-shadow: none; 
             border: 2px solid transparent;
             transition: transform 0.3s, background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Gán animation cho từng lớp */
+        .sub-flow-1 {
+            animation: highlight-step-1 8s infinite linear;
+        }
+        .sub-flow-2 {
+            animation: highlight-step-2 8s infinite linear;
+        }
+        .sub-flow-3 {
+            animation: highlight-step-3 8s infinite linear;
+        }
+        .sub-flow-4 {
+            animation: highlight-step-4 8s infinite linear;
         }
 
         /* --- HẾT CSS CHO HIỆU ỨNG --- */
@@ -100,26 +203,9 @@
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-6">
 
-    <!-- [THAY ĐỔI] Xóa max-w-6xl để tràn màn hình -->
-    <!-- [THAY ĐỔI] Thêm 'relative' để định vị logo con -->
-    <div class="bg-gray-800 p-8 md:p-12 rounded-xl shadow-2xl w-full overflow-hidden relative">
-        
-        <!-- [THÊM MỚI] Logo Công Ty (Trái) -->
-        <!-- Đặt logo ở góc trên bên trái, cách lề theo padding của box (p-8 md:p-12) -->
-        <!-- Thêm onerror để hiển thị placeholder nếu ảnh lỗi -->
-        <img src="Logo.png.png" alt="Logo Công ty" 
-             class="absolute top-8 left-8 md:top-12 md:left-12 h-16 md:h-20 w-auto"
-             onerror="this.src='https://placehold.co/200x80/1F2937/E0E0E0?text=Logo.png.png'; this.onerror=null;">
-        
-        <!-- [THÊM MỚI] Logo Công Đoàn (Phải) -->
-        <!-- Đặt logo ở góc trên bên phải, cách lề theo padding của box (p-8 md:p-12) -->
-        <!-- Thêm onerror để hiển thị placeholder nếu ảnh lỗi -->
-        <img src="congdoan.png" alt="Logo Công đoàn" 
-             class="absolute top-8 right-8 md:top-12 md:right-12 h-16 md:h-20 w-auto"
-             onerror="this.src='https://placehold.co/200x80/1F2937/E0E0E0?text=congdoan.png'; this.onerror=null;">
-
-
-        <!-- [THAY ĐỔI] Tăng cỡ chữ Tiêu đề lên 5xl -->
+    <!-- Xóa max-w-6xl để tràn màn hình -->
+    <div class="bg-gray-800 p-8 md:p-12 rounded-xl shadow-2xl w-full overflow-hidden">
+        <!-- Tăng cỡ chữ Tiêu đề lên 5xl -->
         <h1 class="text-5xl font-bold text-center mb-10 text-blue-300">
             Sơ Đồ Thứ Tự Bầu Cử
         </h1>
@@ -128,91 +214,124 @@
             
             <!-- Các bước chính ngang --><div class="flex flex-wrap justify-center items-center gap-4 mb-8">
                 <!-- Bước 1: Đoàn chủ tịch -->
-                <!-- [THAY ĐỔI] Tăng cỡ chữ lên 2xl, tăng py-4 -->
+                <!-- Tăng cỡ chữ lên 2xl, tăng py-4 -->
                 <div class="bg-blue-600 text-white py-4 rounded-lg shadow-lg text-2xl font-semibold transform transition-transform hover:scale-105 main-flow-box main-box-width" style="animation-delay: 0s;">
                     1. Đoàn Chủ Tịch
                 </div>
 
-                <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-12 h-12 -->
+                <!-- Tăng kích thước mũi tên lên w-12 h-12 -->
                 <svg class="w-12 h-12 text-blue-400 animate-flow-right hidden sm:block" style="animation-delay: 0.5s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 
                 <!-- Bước 2: Cơ quan TGĐ -->
-                <!-- [THAY ĐỔI] Tăng cỡ chữ lên 2xl, tăng py-4 -->
+                <!-- Tăng cỡ chữ lên 2xl, tăng py-4 -->
                 <div class="bg-blue-600 text-white py-4 rounded-lg shadow-lg text-2xl font-semibold transform transition-transform hover:scale-105 main-flow-box main-box-width" style="animation-delay: 2s;">
                     2. Cơ quan TGĐ
                 </div>
 
-                <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-12 h-12 -->
+                <!-- Tăng kích thước mũi tên lên w-12 h-12 -->
                 <svg class="w-12 h-12 text-blue-400 animate-flow-right hidden sm:block" style="animation-delay: 2.5s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 
                 <!-- Bước 3: Đoàn thư ký -->
-                <!-- [THAY ĐỔI] Tăng cỡ chữ lên 2xl, tăng py-4 -->
+                <!-- Tăng cỡ chữ lên 2xl, tăng py-4 -->
                 <div class="bg-blue-600 text-white py-4 rounded-lg shadow-lg text-2xl font-semibold transform transition-transform hover:scale-105 main-flow-box main-box-width" style="animation-delay: 4s;">
                     3. Đoàn Thư Ký
                 </div>
             </div>
             
-            <!-- [THAY ĐỔI] Bọc Bước 4 và Mũi tên mới trong flex container -->
+            <!-- Bọc Bước 4 và Mũi tên mới trong flex container -->
             <div class="flex justify-center items-center gap-4 mb-8">
                 
-                <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-12 h-12 -->
+                <!-- Tăng kích thước mũi tên lên w-12 h-12 -->
                 <svg class="w-12 h-12 text-green-400 animate-flow-right" style="animation-delay: 0s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
 
                 <!-- Bước 4: Đoàn đại biểu (có quy trình con) -->
-                <!-- [THAY ĐỔI] Tăng cỡ chữ lên 2xl, tăng py-4 -->
+                <!-- Tăng cỡ chữ lên 2xl, tăng py-4 -->
                 <div class="bg-green-700 text-white py-4 rounded-lg shadow-lg text-2xl font-semibold transform transition-transform hover:scale-105 main-box-width">
                     4. Đoàn Đại Biểu
                 </div>
 
-                <!-- [THAY ĐỔI] Tăng kích thước đệm lên w-12 h-12 -->
+                <!-- Tăng kích thước đệm lên w-12 h-12 -->
                 <div class="w-12 h-12"></div>
             </div>
 
 
             <!-- Hộp quy trình con cho Đoàn Đại Biểu --><div class="w-full border border-dashed border-gray-500 rounded-lg p-6 bg-gray-700/50">
-                <!-- [THAY ĐỔI] Tăng cỡ chữ lên 3xl -->
+                
+                <!-- === VIDEO MỚI THÊM === -->
+                <!-- Container để giới hạn chiều rộng (max-w-2xl) và căn giữa (mx-auto) -->
+                <div class="max-w-2xl mx-auto mb-8">
+                    <!-- 
+                      - aspect-video: Đặt tỷ lệ 16:9
+                      - w-full: Video chiếm toàn bộ chiều rộng của container (đã bị giới hạn bởi max-w-2xl)
+                      - rounded-lg, shadow-lg: Thêm bo góc và bóng đổ cho thẩm mỹ
+                      - autoplay, loop, muted, playsinline: Các thuộc tính để video tự chạy, lặp lại, tắt tiếng và chạy nội tuyến trên di động
+                    -->
+                    <video class="w-full aspect-video rounded-lg shadow-lg" autoplay loop muted playsinline>
+                        <source src="vongtron.mp4" type="video/mp4">
+                        Trình duyệt của bạn không hỗB trợ thẻ video.
+                    </video>
+                </div>
+                <!-- === KẾT THÚC VIDEO === -->
+
+                <!-- Tăng cỡ chữ lên 3xl -->
                 <h2 class="text-3xl font-semibold text-green-300 mb-6 text-center">
                     Quy trình chi tiết của Đoàn Đại Biểu
                 </h2>
                 
-                <!-- Luồng các dãy (ngang) --><div class="flex flex-wrap justify-center items-center gap-4">
-                    <!-- [THAY ĐỔI] Tăng cỡ chữ lên lg, tăng padding py-3 px-5 -->
-                    <div class="bg-gray-600 py-3 px-5 rounded-md text-lg font-medium shadow-md sub-flow-box" style="animation-delay: 0s;">
-                        Dãy 1
-                    </div>
+                <!-- Luồng các dãy (ngang) - Thêm Dãy 2 -->
+                <div class="flex flex-col items-center gap-4"> <!-- Thêm wrapper flex-col và gap-4 -->
                     
-                    <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-8 h-8 -->
-                    <svg class="w-8 h-8 text-gray-400 hidden sm:block animate-flow-right" style="animation-delay: 1s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    <!-- Dòng Dãy 1 -->
+                    <div class="flex flex-wrap justify-center items-center gap-4">
+                        <!-- Hộp 1 (Dãy 1 Trái) -->
+                        <!-- Gán lớp .sub-flow-2, xóa style delay -->
+                        <div class="bg-gray-600 py-3 px-16 rounded-md text-lg font-medium shadow-md sub-flow-box sub-flow-2 text-center">
+                            Dãy 1
+                        </div>
+                        
+                        <!-- Mũi tên -->
+                        <svg class="w-8 h-8 text-gray-400 hidden sm:block animate-flow-right" style="animation-delay: 1s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
 
-                    <!-- [THAY ĐỔI] Tăng cỡ chữ lên lg, tăng padding py-3 px-5 -->
-                    <div class="bg-gray-600 py-3 px-5 rounded-md text-lg font-medium shadow-md sub-flow-box" style="animation-delay: 2s;">
-                        Dãy 2
+                        <!-- Hộp 2 (Dãy 1 Phải) -->
+                        <!-- Gán lớp .sub-flow-1, xóa style delay -->
+                        <div class="bg-gray-600 py-3 px-16 rounded-md text-lg font-medium shadow-md sub-flow-box sub-flow-1 text-center">
+                            Dãy 1
+                        </div>
+                        
+                        <!-- Thêm mũi tên bên phải -->
+                        <svg class="w-8 h-8 text-gray-400 hidden sm:block animate-flow-right" style="animation-delay: 3s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </div>
-                    
-                    <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-8 h-8 -->
-                    <svg class="w-8 h-8 text-gray-400 hidden sm:block animate-flow-right" style="animation-delay: 3s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    
-                    <!-- [THAY ĐỔI] Tăng cỡ chữ lên lg, tăng padding py-3 px-5 -->
-                    <div class="bg-gray-600 py-3 px-5 rounded-md text-lg font-medium shadow-md sub-flow-box" style="animation-delay: 4s;">
-                        Dãy 3
+
+                    <!-- Dòng Dãy 2 (MỚI) -->
+                    <div class="flex flex-wrap justify-center items-center gap-4">
+                        <!-- Hộp 1 (Dãy 2 Trái) -->
+                        <!-- Gán lớp .sub-flow-4, xóa style delay -->
+                        <div class="bg-gray-600 py-3 px-16 rounded-md text-lg font-medium shadow-md sub-flow-box sub-flow-4 text-center">
+                            Dãy 2
+                        </div>
+                        
+                        <!-- Mũi tên -->
+                        <svg class="w-8 h-8 text-gray-400 hidden sm:block animate-flow-right" style="animation-delay: 1s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+
+                        <!-- Hộp 2 (Dãy 2 Phải) -->
+                        <!-- Gán lớp .sub-flow-3, xóa style delay -->
+                        <div class="bg-gray-600 py-3 px-16 rounded-md text-lg font-medium shadow-md sub-flow-box sub-flow-3 text-center">
+                            Dãy 2
+                        </div>
+                        
+                        <!-- Mũi tên bên phải -->
+                        <svg class="w-8 h-8 text-gray-400 hidden sm:block animate-flow-right" style="animation-delay: 3s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </div>
-                    
-                    <!-- [THAY ĐỔI] Tăng kích thước mũi tên lên w-8 h-8 -->
-                    <svg class="w-8 h-8 text-gray-400 hidden sm:block animate-flow-right" style="animation-delay: 5s;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    
-                    <!-- [THAY ĐỔI] Tăng cỡ chữ lên lg, tăng padding py-3 px-5 -->
-                    <div class="bg-gray-600 py-3 px-5 rounded-md text-lg font-medium shadow-md sub-flow-box" style="animation-delay: 6s;">
-                        Dãy 4...
-                    </div>
+
                 </div>
 
                 <!-- Ghi chú chi tiết --><div class="mt-8 text-base text-gray-300 bg-gray-800 p-4 rounded-lg shadow-inner">
-                    <!-- [THAY ĐỔI] Tăng cỡ chữ Ghi chú lên xl, tăng cỡ chữ list lên base (thay cho text-sm) -->
+                    <!-- Tăng cỡ chữ Ghi chú lên xl, tăng cỡ chữ list lên base (thay cho text-sm) -->
                     <h3 class="font-semibold text-xl text-gray-100 mb-2">Ghi chú:</h3>
                     <ul class="list-disc list-inside space-y-1">
-                        <li>Thực hiện bầu cử gọn hết từng dãy 1, theo thứ tự từ trái qua phải.</li>
+                        <li>Thực hiện bầu cử gọn hết từng dãy 1, theo thứ tự từ phải qua trái.</li>
                         <li>Dãy nào bầu cử xong sẽ quay về đúng hàng của mình.</li>
                         <li>Các dãy tiếp theo (2, 3, 4...) nối đuôi nhau thực hiện.</li>
                     </ul>
