@@ -101,7 +101,24 @@
 <body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-6">
 
     <!-- [THAY ĐỔI] Xóa max-w-6xl để tràn màn hình -->
-    <div class="bg-gray-800 p-8 md:p-12 rounded-xl shadow-2xl w-full overflow-hidden">
+    <!-- [THAY ĐỔI] Thêm 'relative' để định vị logo con -->
+    <div class="bg-gray-800 p-8 md:p-12 rounded-xl shadow-2xl w-full overflow-hidden relative">
+        
+        <!-- [THÊM MỚI] Logo Công Ty (Trái) -->
+        <!-- Đặt logo ở góc trên bên trái, cách lề theo padding của box (p-8 md:p-12) -->
+        <!-- Thêm onerror để hiển thị placeholder nếu ảnh lỗi -->
+        <img src="Logo.png.png" alt="Logo Công ty" 
+             class="absolute top-8 left-8 md:top-12 md:left-12 h-16 md:h-20 w-auto"
+             onerror="this.src='https://placehold.co/200x80/1F2937/E0E0E0?text=Logo.png.png'; this.onerror=null;">
+        
+        <!-- [THÊM MỚI] Logo Công Đoàn (Phải) -->
+        <!-- Đặt logo ở góc trên bên phải, cách lề theo padding của box (p-8 md:p-12) -->
+        <!-- Thêm onerror để hiển thị placeholder nếu ảnh lỗi -->
+        <img src="congdoan.png" alt="Logo Công đoàn" 
+             class="absolute top-8 right-8 md:top-12 md:right-12 h-16 md:h-20 w-auto"
+             onerror="this.src='https://placehold.co/200x80/1F2937/E0E0E0?text=congdoan.png'; this.onerror=null;">
+
+
         <!-- [THAY ĐỔI] Tăng cỡ chữ Tiêu đề lên 5xl -->
         <h1 class="text-5xl font-bold text-center mb-10 text-blue-300">
             Sơ Đồ Thứ Tự Bầu Cử
